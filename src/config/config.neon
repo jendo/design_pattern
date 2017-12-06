@@ -1,0 +1,5 @@
+parameters:
+    logFile: %baseDir%/logs/log.txt
+
+services:
+    application: MyApp\App\App

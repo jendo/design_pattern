@@ -1,6 +1,6 @@
 /vendor
 /temp
-/logs
+/logs/*
 
 # Intellij IDEA
 .idea
