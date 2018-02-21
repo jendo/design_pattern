@@ -4,3 +4,4 @@ parameters:
 services:
     application: App\App
     - App\Entity\User
+    - App\DesignPattern\Factory\SimpleFactory\AnimalFactory
