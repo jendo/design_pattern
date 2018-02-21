@@ -1,11 +1,20 @@
 <?php
+namespace App;
 
-namespace MyApp\App;
+use App\DesignPattern\Singleton\Database;
 
 class App
 {
+
+    public function __construct()
+    {
+    }
+
     public function run()
     {
-        var_dump('ok');
+        // test singleton
+        $db = Database::getInstance();
+        $db2 = Database::getInstance();
+        var_dump($db === $db2);
     }
 }
