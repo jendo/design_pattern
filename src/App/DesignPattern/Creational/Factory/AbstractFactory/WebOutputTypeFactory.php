@@ -1,14 +1,15 @@
 <?php
-namespace App\DesignPattern\Factory\AbstractFactory;
+namespace App\DesignPattern\Creational\Factory\AbstractFactory;
 
-class DataOutputTypeFactory implements  OutputTypeFactoryInterface
+class WebOutputTypeFactory implements  OutputTypeFactoryInterface
 {
+
     /**
      * @return PrettyOutputInterface
      */
     public function prettyOutput(): PrettyOutputInterface
     {
-        return new DataPrettyOutput();
+        return new WebPrettyOutput();
     }
 
     /**
@@ -16,6 +17,6 @@ class DataOutputTypeFactory implements  OutputTypeFactoryInterface
      */
     public function uglyOutput(): UglyOutputInterface
     {
-        return new DataUglyOutput();
+        return new WebUglyOutput();
     }
 }

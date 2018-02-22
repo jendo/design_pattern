@@ -1,9 +1,9 @@
 <?php
-namespace App\DesignPattern\Factory\FactoryMethod;
+namespace App\DesignPattern\Creational\Factory\SimpleFactory;
 
 use InvalidArgumentException;
 
-class PetAnimalFactory
+class AnimalFactory
 {
     const ERR_CODE_INVALID_ARGUMENT = 1000;
 
@@ -22,7 +22,7 @@ class PetAnimalFactory
                 break;
             default:
                 throw new InvalidArgumentException(
-                    sprintf('Pet animal of species: %s does not exist.', $animal),
+                    sprintf('Animal of species: %s does not exist.', $animal),
                     self::ERR_CODE_INVALID_ARGUMENT
                 );
         }

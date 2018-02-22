@@ -1,5 +1,5 @@
 <?php
-namespace App\DesignPattern\Factory\AbstractFactory;
+namespace App\DesignPattern\Creational\Factory\AbstractFactory;
 
 class DataPrettyOutput implements PrettyOutputInterface
 {

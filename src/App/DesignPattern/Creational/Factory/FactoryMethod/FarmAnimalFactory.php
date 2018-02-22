@@ -1,9 +1,9 @@
 <?php
-namespace App\DesignPattern\Factory\SimpleFactory;
+namespace App\DesignPattern\Creational\Factory\FactoryMethod;
 
 use InvalidArgumentException;
 
-class AnimalFactory
+class FarmAnimalFactory
 {
     const ERR_CODE_INVALID_ARGUMENT = 1000;
 
@@ -14,15 +14,15 @@ class AnimalFactory
     public static function factory(string $animal): AnimalInterface
     {
         switch ($animal) {
-            case Dog::SPECIES:
-                return new Dog();
+            case Pig::SPECIES:
+                return new Pig();
                 break;
-            case Cat::SPECIES:
-                return new Cat();
+            case Chicken::SPECIES:
+                return new Chicken();
                 break;
             default:
                 throw new InvalidArgumentException(
-                    sprintf('Animal of species: %s does not exist.', $animal),
+                    sprintf('Farm animal of species: %s does not exist.', $animal),
                     self::ERR_CODE_INVALID_ARGUMENT
                 );
         }

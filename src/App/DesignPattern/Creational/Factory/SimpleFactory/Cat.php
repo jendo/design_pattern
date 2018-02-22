@@ -1,10 +1,9 @@
 <?php
-namespace App\DesignPattern\Factory\SimpleFactory;
+namespace App\DesignPattern\Creational\Factory\SimpleFactory;
 
-class Dog implements AnimalInterface
+class Cat implements AnimalInterface
 {
-    const SPECIES = 'dog';
-
+    const SPECIES = 'cat';
     /**
      * @return string
      */

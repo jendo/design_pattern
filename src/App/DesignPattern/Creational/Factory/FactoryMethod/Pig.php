@@ -1,9 +1,9 @@
 <?php
-namespace App\DesignPattern\Factory\FactoryMethod;
+namespace App\DesignPattern\Creational\Factory\FactoryMethod;
 
-class Cat implements AnimalInterface
+class Pig implements AnimalInterface
 {
-    const SPECIES = 'cat';
+    const SPECIES = 'pig';
     /**
      * @return string
      */

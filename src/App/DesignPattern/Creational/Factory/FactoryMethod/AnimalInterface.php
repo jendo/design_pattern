@@ -1,5 +1,5 @@
 <?php
-namespace App\DesignPattern\Factory\SimpleFactory;
+namespace App\DesignPattern\Creational\Factory\FactoryMethod;
 
 interface AnimalInterface
 {

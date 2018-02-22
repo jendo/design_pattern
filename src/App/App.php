@@ -1,14 +1,15 @@
 <?php
 namespace App;
 
-use App\DesignPattern\Factory\AbstractFactory\DataOutputTypeFactory;
-use App\DesignPattern\Factory\AbstractFactory\WebOutputTypeFactory;
-use App\DesignPattern\Factory\FactoryMethod\FarmAnimalFactory;
-use App\DesignPattern\Factory\FactoryMethod\PetAnimalFactory;
-use App\DesignPattern\Factory\FactoryMethod\Pig;
-use App\DesignPattern\Factory\SimpleFactory\AnimalFactory;
-use App\DesignPattern\Factory\SimpleFactory\Dog;
-use App\DesignPattern\Singleton\Database;
+
+use App\DesignPattern\Creational\Factory\AbstractFactory\DataOutputTypeFactory;
+use App\DesignPattern\Creational\Factory\AbstractFactory\WebOutputTypeFactory;
+use App\DesignPattern\Creational\Factory\FactoryMethod\FarmAnimalFactory;
+use App\DesignPattern\Creational\Factory\FactoryMethod\PetAnimalFactory;
+use App\DesignPattern\Creational\Factory\FactoryMethod\Pig;
+use App\DesignPattern\Creational\Factory\SimpleFactory\AnimalFactory;
+use App\DesignPattern\Creational\Factory\SimpleFactory\Dog;
+use App\DesignPattern\Creational\Singleton\Database;
 use InvalidArgumentException;
 
 class App

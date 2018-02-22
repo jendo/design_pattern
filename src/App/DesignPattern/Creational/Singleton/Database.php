@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DesignPattern\Singleton;
+namespace App\DesignPattern\Creational\Singleton;
 
 class Database
 {
