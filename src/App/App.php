@@ -1,7 +1,9 @@
 <?php
 namespace App;
 
-
+use App\DesignPattern\Creational\Builder\EmployedMaleBuilder;
+use App\DesignPattern\Creational\Builder\PersonDirector;
+use App\DesignPattern\Creational\Builder\UnemployedFemaleBuilder;
 use App\DesignPattern\Creational\Factory\AbstractFactory\DataOutputTypeFactory;
 use App\DesignPattern\Creational\Factory\AbstractFactory\WebOutputTypeFactory;
 use App\DesignPattern\Creational\Factory\FactoryMethod\FarmAnimalFactory;
@@ -14,9 +16,35 @@ use InvalidArgumentException;
 
 class App
 {
+    /**
+     * @var PersonDirector
+     */
+    private $personDirector;
 
-    public function __construct()
+    /**
+     * @var EmployedMaleBuilder
+     */
+    private $employedMaleBuilder;
+
+    /**
+     * @var UnemployedFemaleBuilder
+     */
+    private $unemployedFemaleBuilder;
+
+    /**
+     * @param PersonDirector $personDirector
+     * @param EmployedMaleBuilder $employedMaleBuilder
+     * @param UnemployedFemaleBuilder $unemployedFemaleBuilder
+     */
+    public function __construct(
+        PersonDirector $personDirector,
+        EmployedMaleBuilder $employedMaleBuilder,
+        UnemployedFemaleBuilder $unemployedFemaleBuilder
+    )
     {
+        $this->personDirector = $personDirector;
+        $this->employedMaleBuilder = $employedMaleBuilder;
+        $this->unemployedFemaleBuilder = $unemployedFemaleBuilder;
     }
 
     /**
@@ -62,5 +90,9 @@ class App
         var_dump($dataOutputFactory->prettyOutput()->getPrettyOutput());
         var_dump($dataOutputFactory->uglyOutput()->getUglyOutput());
 
+        // builder
+        $employedMalePerson = $this->personDirector->build($this->employedMaleBuilder);
+        $unemployedFemalePerson = $this->personDirector->build($this->unemployedFemaleBuilder);
+        var_dump($employedMalePerson, $unemployedFemalePerson);
     }
 }

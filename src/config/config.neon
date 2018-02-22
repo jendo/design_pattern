@@ -3,5 +3,8 @@ parameters:
 
 services:
     application: App\App
-    - App\Entity\User
+    - App\Entity\PersonFactory
     - App\DesignPattern\Creational\Factory\SimpleFactory\AnimalFactory
+    - App\DesignPattern\Creational\Builder\EmployedMaleBuilder
+    - App\DesignPattern\Creational\Builder\UnemployedFemaleBuilder
+    - App\DesignPattern\Creational\Builder\PersonDirector
