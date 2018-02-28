@@ -11,6 +11,8 @@ use App\DesignPattern\Creational\Factory\FactoryMethod\PetAnimalFactory;
 use App\DesignPattern\Creational\Factory\FactoryMethod\Pig;
 use App\DesignPattern\Creational\Factory\SimpleFactory\AnimalFactory;
 use App\DesignPattern\Creational\Factory\SimpleFactory\Dog;
+use App\DesignPattern\Creational\Prototype\PHPBookPrototype;
+use App\DesignPattern\Creational\Prototype\SQLBookPrototype;
 use App\DesignPattern\Creational\Singleton\Database;
 use InvalidArgumentException;
 
@@ -94,5 +96,17 @@ class App
         $employedMalePerson = $this->personDirector->build($this->employedMaleBuilder);
         $unemployedFemalePerson = $this->personDirector->build($this->unemployedFemaleBuilder);
         var_dump($employedMalePerson, $unemployedFemalePerson);
+
+        // prototype
+        $phpProto = new PHPBookPrototype();
+        $sqlProto = new SQLBookPrototype();
+
+        $book1 = clone $phpProto;
+        $book1->setTitle('PHP book 1');
+
+        $book2 = clone $phpProto;
+        $book2->setTitle('PHP book 2');
+
+        var_dump($book1, $book2);
     }
 }
