@@ -14,6 +14,8 @@ use App\DesignPattern\Creational\Factory\SimpleFactory\Dog;
 use App\DesignPattern\Creational\Prototype\PHPBookPrototype;
 use App\DesignPattern\Creational\Prototype\SQLBookPrototype;
 use App\DesignPattern\Creational\Singleton\Database;
+use App\DesignPattern\Structural\Adapter\PDFTemplateAdapter;
+use App\DesignPattern\Structural\Adapter\RenderPDFTemplate;
 use InvalidArgumentException;
 
 class App
@@ -108,5 +110,11 @@ class App
         $book2->setTitle('PHP book 2');
 
         var_dump($book1, $book2);
+        
+        // adapter
+        $pdfTemplate = new RenderPDFTemplate();
+        $pdfTemplateAdapter = new PDFTemplateAdapter($pdfTemplate);
+        var_dump($pdfTemplateAdapter->renderHeader());
+
     }
 }
