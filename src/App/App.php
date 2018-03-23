@@ -94,12 +94,14 @@ class App
         var_dump($dataOutputFactory->prettyOutput()->getPrettyOutput());
         var_dump($dataOutputFactory->uglyOutput()->getUglyOutput());
 
-        // builder
+        // BUILDER - director class will build person with gender and status of employment
         $employedMalePerson = $this->personDirector->build($this->employedMaleBuilder);
         $unemployedFemalePerson = $this->personDirector->build($this->unemployedFemaleBuilder);
         var_dump($employedMalePerson, $unemployedFemalePerson);
 
-        // prototype
+        // PROTOTYPE - create object by cloning
+        // the time taken to clone an object is quicker than it would be to initialise a new object
+        // because constructor is not re-executed
         $phpProto = new PHPBookPrototype();
         $sqlProto = new SQLBookPrototype();
 
@@ -111,7 +113,7 @@ class App
 
         var_dump($book1, $book2);
         
-        // adapter
+        // ADAPTER
         $pdfTemplate = new RenderPDFTemplate();
         $pdfTemplateAdapter = new PDFTemplateAdapter($pdfTemplate);
         var_dump($pdfTemplateAdapter->renderHeader());
