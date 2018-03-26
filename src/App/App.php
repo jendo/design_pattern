@@ -16,6 +16,9 @@ use App\DesignPattern\Creational\Prototype\SQLBookPrototype;
 use App\DesignPattern\Creational\Singleton\Database;
 use App\DesignPattern\Structural\Adapter\PDFTemplateAdapter;
 use App\DesignPattern\Structural\Adapter\RenderPDFTemplate;
+use App\DesignPattern\Structural\Decorator\AirConditionCarFeatureDecorator;
+use App\DesignPattern\Structural\Decorator\CarBrands;
+use App\DesignPattern\Structural\Decorator\CarFactory;
 use InvalidArgumentException;
 
 class App
@@ -36,19 +39,27 @@ class App
     private $unemployedFemaleBuilder;
 
     /**
+     * @var CarFactory
+     */
+    private $carFactory;
+
+    /**
      * @param PersonDirector $personDirector
      * @param EmployedMaleBuilder $employedMaleBuilder
      * @param UnemployedFemaleBuilder $unemployedFemaleBuilder
+     * @param CarFactory $carFactory
      */
     public function __construct(
         PersonDirector $personDirector,
         EmployedMaleBuilder $employedMaleBuilder,
-        UnemployedFemaleBuilder $unemployedFemaleBuilder
+        UnemployedFemaleBuilder $unemployedFemaleBuilder,
+        CarFactory $carFactory
     )
     {
         $this->personDirector = $personDirector;
         $this->employedMaleBuilder = $employedMaleBuilder;
         $this->unemployedFemaleBuilder = $unemployedFemaleBuilder;
+        $this->carFactory = $carFactory;
     }
 
     /**
@@ -56,7 +67,7 @@ class App
      */
     public function run()
     {
-        // singleton
+        // SINGLETON
         $db = Database::getInstance();
         $db2 = Database::getInstance();
         var_dump($db === $db2);
@@ -113,10 +124,15 @@ class App
 
         var_dump($book1, $book2);
         
-        // ADAPTER
+        // ADAPTER - incompatible interfaces to work together
         $pdfTemplate = new RenderPDFTemplate();
         $pdfTemplateAdapter = new PDFTemplateAdapter($pdfTemplate);
         var_dump($pdfTemplateAdapter->renderHeader());
 
+        //DECORATOR - extend an existing classes functionality without modifying existing classes
+        $skodaOctaviaCar = $this->carFactory->create(CarBrands::SKODA_OCTAVIA);
+        $skodaOctaviaCarWithAC =  new AirConditionCarFeatureDecorator($skodaOctaviaCar);
+
+        var_dump($skodaOctaviaCar->getEquipments(), $skodaOctaviaCarWithAC->getEquipments());
     }
 }

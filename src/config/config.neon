@@ -8,3 +8,4 @@ services:
     - App\DesignPattern\Creational\Builder\EmployedMaleBuilder
     - App\DesignPattern\Creational\Builder\UnemployedFemaleBuilder
     - App\DesignPattern\Creational\Builder\PersonDirector
+    - App\DesignPattern\Structural\Decorator\CarFactory
