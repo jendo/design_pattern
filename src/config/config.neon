@@ -9,3 +9,7 @@ services:
     - App\DesignPattern\Creational\Builder\UnemployedFemaleBuilder
     - App\DesignPattern\Creational\Builder\PersonDirector
     - App\DesignPattern\Structural\Decorator\CarFactory
+    - App\DesignPattern\Structural\Facade\FacebookClient
+    - App\DesignPattern\Structural\Facade\GoogleClient
+    - App\DesignPattern\Structural\Facade\TwitterClient
+    - App\DesignPattern\Structural\Facade\SocialShareFacade

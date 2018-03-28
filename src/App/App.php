@@ -19,6 +19,7 @@ use App\DesignPattern\Structural\Adapter\RenderPDFTemplate;
 use App\DesignPattern\Structural\Decorator\AirConditionCarFeatureDecorator;
 use App\DesignPattern\Structural\Decorator\CarBrands;
 use App\DesignPattern\Structural\Decorator\CarFactory;
+use App\DesignPattern\Structural\Facade\SocialShareFacade;
 use InvalidArgumentException;
 
 class App
@@ -42,24 +43,31 @@ class App
      * @var CarFactory
      */
     private $carFactory;
+    /**
+     * @var SocialShareFacade
+     */
+    private $socialShareFacade;
 
     /**
      * @param PersonDirector $personDirector
      * @param EmployedMaleBuilder $employedMaleBuilder
      * @param UnemployedFemaleBuilder $unemployedFemaleBuilder
      * @param CarFactory $carFactory
+     * @param SocialShareFacade $socialShareFacade
      */
     public function __construct(
         PersonDirector $personDirector,
         EmployedMaleBuilder $employedMaleBuilder,
         UnemployedFemaleBuilder $unemployedFemaleBuilder,
-        CarFactory $carFactory
+        CarFactory $carFactory,
+        SocialShareFacade $socialShareFacade
     )
     {
         $this->personDirector = $personDirector;
         $this->employedMaleBuilder = $employedMaleBuilder;
         $this->unemployedFemaleBuilder = $unemployedFemaleBuilder;
         $this->carFactory = $carFactory;
+        $this->socialShareFacade = $socialShareFacade;
     }
 
     /**
@@ -134,5 +142,10 @@ class App
         $skodaOctaviaCarWithAC =  new AirConditionCarFeatureDecorator($skodaOctaviaCar);
 
         var_dump($skodaOctaviaCar->getEquipments(), $skodaOctaviaCarWithAC->getEquipments());
+
+        //FACADE - facade class hides a complex subsystem from a calling class.
+        // In turn, the complex subsystem will know nothing of the calling class.
+        // Call only 1 method to share your post with all the social networks.
+        $this->socialShareFacade->share('fb title','tweet status', 'url');
     }
 }
