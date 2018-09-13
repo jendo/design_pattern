@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  php:
+    build: ./docker/php
+    volumes:
+      - ./src:/var/www/design_pattern
+      
+  webserver:
+    image: nginx:mainline-alpine
+    depends_on:
+      - php
+    ports:
+      - '5001:80'
+    volumes:
+      - ./src:/var/www/design_pattern
+      - ./config/nginx.conf:/etc/nginx/conf.d/default.conf
+
+volumes:
+  test:
