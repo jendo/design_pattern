@@ -21,6 +21,7 @@ use App\DesignPattern\Structural\Decorator\CarBrands;
 use App\DesignPattern\Structural\Decorator\CarFactory;
 use App\DesignPattern\Structural\Facade\SocialShareFacade;
 use InvalidArgumentException;
+use Tracy\Debugger;
 
 class App
 {
@@ -78,45 +79,45 @@ class App
         // SINGLETON
         $db = Database::getInstance();
         $db2 = Database::getInstance();
-        var_dump($db === $db2);
+        Debugger::dump($db === $db2);
 
         // simple factory
         try {
             $dog = AnimalFactory::factory(Dog::SPECIES);
-            var_dump($dog->getSpecies());
+            Debugger::dump($dog->getSpecies());
 
             $dummyAnimal = AnimalFactory::factory('dummyAnimal');
         } catch (InvalidArgumentException $e) {
-            var_dump($e->getMessage());
+            Debugger::dump($e->getMessage());
         }
 
         // factory method
         try {
             $pig = FarmAnimalFactory::factory(Pig::SPECIES);
-            var_dump($pig->getSpecies());
+            Debugger::dump($pig->getSpecies());
 
             $dog = PetAnimalFactory::factory(Dog::SPECIES);
-            var_dump($dog->getSpecies());
+            Debugger::dump($dog->getSpecies());
 
             $dummyAnimal = PetAnimalFactory::factory('dummyPetAnimal');
         } catch (InvalidArgumentException $e) {
-            var_dump($e->getMessage());
+            Debugger::dump($e->getMessage());
         }
 
         // abstract factory
         $webOutputFactory = new WebOutputTypeFactory();
         $dataOutputFactory = new DataOutputTypeFactory();
 
-        var_dump($webOutputFactory->prettyOutput()->getPrettyOutput());
-        var_dump($webOutputFactory->uglyOutput()->getUglyOutput());
+        Debugger::dump($webOutputFactory->prettyOutput()->getPrettyOutput());
+        Debugger::dump($webOutputFactory->uglyOutput()->getUglyOutput());
 
-        var_dump($dataOutputFactory->prettyOutput()->getPrettyOutput());
-        var_dump($dataOutputFactory->uglyOutput()->getUglyOutput());
+        Debugger::dump($dataOutputFactory->prettyOutput()->getPrettyOutput());
+        Debugger::dump($dataOutputFactory->uglyOutput()->getUglyOutput());
 
         // BUILDER - director class will build person with gender and status of employment
         $employedMalePerson = $this->personDirector->build($this->employedMaleBuilder);
         $unemployedFemalePerson = $this->personDirector->build($this->unemployedFemaleBuilder);
-        var_dump($employedMalePerson, $unemployedFemalePerson);
+        Debugger::dump($employedMalePerson, $unemployedFemalePerson);
 
         // PROTOTYPE - create object by cloning
         // the time taken to clone an object is quicker than it would be to initialise a new object
@@ -130,18 +131,18 @@ class App
         $book2 = clone $phpProto;
         $book2->setTitle('PHP book 2');
 
-        var_dump($book1, $book2);
+        Debugger::dump($book1, $book2);
         
         // ADAPTER - incompatible interfaces to work together
         $pdfTemplate = new RenderPDFTemplate();
         $pdfTemplateAdapter = new PDFTemplateAdapter($pdfTemplate);
-        var_dump($pdfTemplateAdapter->renderHeader());
+        Debugger::dump($pdfTemplateAdapter->renderHeader());
 
         //DECORATOR - extend an existing classes functionality without modifying existing classes
         $skodaOctaviaCar = $this->carFactory->create(CarBrands::SKODA_OCTAVIA);
         $skodaOctaviaCarWithAC =  new AirConditionCarFeatureDecorator($skodaOctaviaCar);
 
-        var_dump($skodaOctaviaCar->getEquipments(), $skodaOctaviaCarWithAC->getEquipments());
+        Debugger::dump($skodaOctaviaCar->getEquipments(), $skodaOctaviaCarWithAC->getEquipments());
 
         //FACADE - facade class hides a complex subsystem from a calling class.
         // In turn, the complex subsystem will know nothing of the calling class.
